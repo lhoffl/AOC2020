@@ -7,22 +7,21 @@ File.foreach('input.txt') do |line|
     numbers = tokens[0].split('-')
     first_number = numbers[0].to_i
     second_number = numbers[1].to_i
-    range = first_number .. second_number
     
     required_character = tokens[1].gsub(/:/, '')
     password = tokens[2].split('')
 
-    counts = password.each_with_object(Hash.new(0)) { |character, count| count[character] += 1 }
+    character_counts = password.each_with_object(Hash.new(0)) { |character, count| count[character] += 1 }
     
-    if range.include?(counts[required_character])
+    if (first_number .. second_number).include?(character_counts[required_character])
         valid_password_count1 += 1
     end
     
-    count = 0
-    count += 1 if (password[first_number - 1] == required_character)
-    count += 1 if (password[second_number - 1] == required_character)
+    required_character_count = 0
+    required_character_count += 1 if (password[first_number - 1] == required_character)
+    required_character_count += 1 if (password[second_number - 1] == required_character)
     
-    if count == 1
+    if required_character_count == 1
         valid_password_count2 += 1
     end
 end

@@ -18,8 +18,8 @@ File.foreach('input.txt') do |line|
     end
     
     required_character_count = 0
-    required_character_count += 1 if (password[first_number - 1] == required_character)
-    required_character_count += 1 if (password[second_number - 1] == required_character)
+    required_character_count += 1 if password[first_number - 1] == required_character
+    required_character_count += 1 if password[second_number - 1] == required_character
     
     if required_character_count == 1
         valid_password_count2 += 1
